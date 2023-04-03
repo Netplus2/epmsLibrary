@@ -1,2 +1,0 @@
-[arm64-v8a] Compile        : module-params <= module-params.c
-[arm64-v8a] SharedLibrary  : libmodule-params.so

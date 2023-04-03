@@ -1,2 +1,0 @@
-/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk
-/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Application.mk

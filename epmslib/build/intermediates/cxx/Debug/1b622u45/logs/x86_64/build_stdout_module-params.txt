@@ -1,2 +1,0 @@
-[x86_64] Compile        : module-params <= module-params.c
-[x86_64] SharedLibrary  : libmodule-params.so
