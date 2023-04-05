@@ -1,5 +1,6 @@
 package com.isw.iswclient.iswapiclient
 
+import com.danbamitale.epmslib.utils.Utility
 import com.isw.iswclient.request.TokenPassportRequest
 import com.isw.iswclient.request.TransferRequest
 import com.isw.iswclient.response.CashOutResponnse
@@ -26,7 +27,7 @@ interface IswService {
     @POST("amex")
     fun performTransaction(
         @Header("Authorization") token: String,
-        @Body transferRequest: TransferRequest
+        @Body transferRequest: TransferRequest,
     ): Single<CashOutResponnse>
 }
 
@@ -35,7 +36,7 @@ val baseBuilder: Retrofit.Builder = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .client(
         getBaseOkhttpClientBuilder()
-            .build()
+            .build(),
     )
 
 private fun getBaseOkhttpClientBuilder(): OkHttpClient.Builder {
@@ -53,11 +54,11 @@ val getTokenClient: IswService = Retrofit.Builder()
     .client(getBaseOkhttpClientBuilder().build())
     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     .addConverterFactory(SimpleXmlConverterFactory.create())
-    .baseUrl("https://saturn.interswitchng.com:443/")
+    .baseUrl(Utility.INTER_SWITCH_GET_TOKEN_ENDPOINT)
     .build().create(IswService::class.java)
 
-const val live = "https://kimono.interswitchng.com/kmw/kimonoservice/"
-const val test = "https://qa.interswitchng.com/kmw/kimonoservice/"
+val live = Utility.KIMONO_BASE_URL
+val test = Utility.INTER_SWITCH_TEST_URL
 const val KSN_TEST = ""
 const val IPEK_TEST = ""
 const val KSN_LIVE = ""

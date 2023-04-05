@@ -12,6 +12,13 @@ object Utility {
 
     private external fun getDefaultIp(): String
     private external fun getDefaultPort(): String
+    private external fun getKimonoBaseUrl(): String
+    private external fun getInterSwitchTestUrl(): String
+    private external fun getInterSwitchTokenBaseUrl(): String
+
+    val INTER_SWITCH_GET_TOKEN_ENDPOINT: String = getInterSwitchTokenBaseUrl()
+    val INTER_SWITCH_TEST_URL: String = getInterSwitchTestUrl()
+    val KIMONO_BASE_URL: String = getKimonoBaseUrl()
 
     val POS_VAS_NIBSS_DEFAULT_IP = getDefaultIp()
     val POS_VAS_NIBSS_DEFAULT_PORT = getDefaultPort().toInt()

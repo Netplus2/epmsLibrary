@@ -19,3 +19,18 @@ JNIEXPORT jstring JNICALL
 Java_com_danbamitale_epmslib_utils_Utility_getDefaultPort(JNIEnv *env, jobject thiz) {
     return (*env)->NewStringUTF(env, "5043");
 }
+
+JNIEXPORT jstring JNICALL
+Java_com_danbamitale_epmslib_utils_Utility_getKimonoBaseUrl(JNIEnv *env, jobject thiz) {
+    return (*env)->NewStringUTF(env, "https://kimono.interswitchng.com/kmw/kimonoservice/");
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_danbamitale_epmslib_utils_Utility_getInterSwitchTestUrl(JNIEnv *env, jobject thiz) {
+    return (*env)->NewStringUTF(env, "https://qa.interswitchng.com/kmw/kimonoservice/");
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_danbamitale_epmslib_utils_Utility_getInterSwitchTokenBaseUrl(JNIEnv *env, jobject thiz) {
+    return (*env)->NewStringUTF(env, "https://saturn.interswitchng.com/");
+}
