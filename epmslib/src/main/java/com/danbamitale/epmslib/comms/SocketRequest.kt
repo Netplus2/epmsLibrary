@@ -3,10 +3,7 @@ package com.danbamitale.epmslib.comms
 import android.content.Context
 import android.util.Log
 import com.danbamitale.epmslib.entities.ConnectionData
-import java.io.DataInputStream
-import java.io.DataOutputStream
-import java.io.EOFException
-import java.io.IOException
+import java.io.* // ktlint-disable no-wildcard-imports
 import java.net.* // ktlint-disable no-wildcard-imports
 import javax.net.ssl.SSLSocket
 
@@ -32,7 +29,7 @@ class SocketRequest
                 context,
                 connectionData.ipAddress,
                 connectionData.ipPort,
-                connectionData.certFileResId ?: 0
+                connectionData.certFile,
             )
             sslsocket.soTimeout = 60 * 1000
             return send(isoStream, sslsocket)
@@ -109,8 +106,8 @@ class SocketRequest
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun getConnection(context: Context, ip: String, port: Int, certFileResId: Int): SSLSocket {
-//        val trustFactory = SSLManager.getTrustManagerFactory(context,certFileResId)
+    fun getConnection(context: Context, ip: String, port: Int, certFile: File): SSLSocket {
+//        val trustFactory = SSLManager.getTrustManagerFactory(context, certFile)
         val sslFactory =
             SSLManager.getTrustySSLSocketFactory() // getSSLSocketFactory(trustManagerFactory = trustFactory)
         return SSLManager.createSocket(sslFactory, ip, port) as SSLSocket

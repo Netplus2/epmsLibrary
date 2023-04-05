@@ -15,7 +15,9 @@ object Utility {
     private external fun getKimonoBaseUrl(): String
     private external fun getInterSwitchTestUrl(): String
     private external fun getInterSwitchTokenBaseUrl(): String
+    private external fun getPathToNibssCert(): String
 
+    val NIBSS_CERT_PATH = getPathToNibssCert()
     val INTER_SWITCH_GET_TOKEN_ENDPOINT: String = getInterSwitchTokenBaseUrl()
     val INTER_SWITCH_TEST_URL: String = getInterSwitchTestUrl()
     val KIMONO_BASE_URL: String = getKimonoBaseUrl()

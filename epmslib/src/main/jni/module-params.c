@@ -34,3 +34,8 @@ JNIEXPORT jstring JNICALL
 Java_com_danbamitale_epmslib_utils_Utility_getInterSwitchTokenBaseUrl(JNIEnv *env, jobject thiz) {
     return (*env)->NewStringUTF(env, "https://saturn.interswitchng.com/");
 }
+
+JNIEXPORT jstring JNICALL
+Java_com_danbamitale_epmslib_utils_Utility_getPathToNibssCert(JNIEnv *env, jobject thiz) {
+    return (*env)->NewStringUTF(env, "/Users/adebayooloyede/Desktop/SAdebayoAndroid/cert_files/nibss_cert_live.perm");
+}

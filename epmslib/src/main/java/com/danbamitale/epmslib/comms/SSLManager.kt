@@ -1,6 +1,9 @@
 package com.danbamitale.epmslib.comms
 
 import android.content.Context
+import com.danbamitale.epmslib.entities.certificateFile
+import java.io.BufferedInputStream
+import java.io.File
 import java.io.InputStream
 import java.security.KeyStore
 import java.security.SecureRandom
@@ -10,11 +13,14 @@ import javax.net.ssl.* // ktlint-disable no-wildcard-imports
 
 object SSLManager {
 
-    fun getTrustManagerFactory(context: Context, certificateResourceId: Int): TrustManagerFactory {
+    fun getTrustManagerFactory(context: Context, certificateFile: File): TrustManagerFactory {
         // Load CAs from an InputStream (could be from a resource or ByteArrayInputStream or ...)
         val cf: CertificateFactory = CertificateFactory.getInstance("X.509")
 
-        val caInput: InputStream = context.resources.openRawResource(certificateResourceId)
+        val certificateInputStream = certificateFile.inputStream()
+        val bufferedInputStream = BufferedInputStream(certificateInputStream)
+
+        val caInput: InputStream = bufferedInputStream
         val ca: X509Certificate = caInput.use {
             cf.generateCertificate(it) as X509Certificate
         }
@@ -57,7 +63,7 @@ object SSLManager {
     fun getSSLSocketFactory(
         trustManagerFactory: TrustManagerFactory,
         keyManagerFactory: KeyManagerFactory? = null,
-        secureRandom: SecureRandom? = null
+        secureRandom: SecureRandom? = null,
     ): SSLSocketFactory {
         val context: SSLContext = SSLContext.getInstance("TLS").apply {
             init(keyManagerFactory?.keyManagers, trustManagerFactory.trustManagers, secureRandom)

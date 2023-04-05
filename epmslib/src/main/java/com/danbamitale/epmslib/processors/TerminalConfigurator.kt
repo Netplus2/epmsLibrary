@@ -35,7 +35,7 @@ class TerminalConfigurator(connectionData: ConnectionData) {
             ConfigData.TAG_LEN_CURRENCY_CODE,
             ConfigData.TAG_LEN_MERCHANT_CATEGORY_CODE,
             ConfigData.TAG_LEN_MERCHANT_NAME_LOCATION,
-            ConfigData.TAG_LEN_TIMEOUT
+            ConfigData.TAG_LEN_TIMEOUT,
         )
 
         for (dataCode in responseDataCodes) {
@@ -73,29 +73,29 @@ class TerminalConfigurator(connectionData: ConnectionData) {
                 IsoValue(
                     IsoType.ALPHA,
                     requestCode + IsoAccountType.DEFAULT_UNSPECIFIED.code + IsoAccountType.DEFAULT_UNSPECIFIED.code,
-                    6
-                )
+                    6,
+                ),
             )
 
             isoMessage.setField(
                 Constants.TRANSMISSION_DATE_TIME_7,
-                IsoValue(IsoType.NUMERIC, timeMgr.longDate, 10)
+                IsoValue(IsoType.NUMERIC, timeMgr.longDate, 10),
             )
             isoMessage.setField(
                 Constants.SYSTEMS_TRACE_AUDIT_NUMBER_11,
-                IsoValue(IsoType.NUMERIC, timeMgr.time, 6)
+                IsoValue(IsoType.NUMERIC, timeMgr.time, 6),
             )
             isoMessage.setField(
                 Constants.TIME_LOCAL_TRANSACTION_12,
-                IsoValue(IsoType.NUMERIC, timeMgr.time, 6)
+                IsoValue(IsoType.NUMERIC, timeMgr.time, 6),
             )
             isoMessage.setField(
                 Constants.DATE_LOCAL_TRANSACTION_13,
-                IsoValue(IsoType.NUMERIC, timeMgr.shortDate, 4)
+                IsoValue(IsoType.NUMERIC, timeMgr.shortDate, 4),
             )
             isoMessage.setField(
                 Constants.CARD_ACCEPTOR_TERMINAL_ID_41,
-                IsoValue(IsoType.ALPHA, terminalID, 8)
+                IsoValue(IsoType.ALPHA, terminalID, 8),
             )
 
             val messageBytes = IsoAdapter.prepareByteStream(isoMessage)
@@ -114,7 +114,7 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         sessionKey: String?,
         field62Data: String,
         transactionCode: String,
-        responseDataIndex: Int = Constants.PRIVATE_FIELD_MGT_DATA1_62
+        responseDataIndex: Int = Constants.PRIVATE_FIELD_MGT_DATA1_62,
     ): Single<String> {
         return Single.fromCallable {
             val isoMessage = IsoMessage()
@@ -127,40 +127,40 @@ class TerminalConfigurator(connectionData: ConnectionData) {
                 IsoValue(
                     IsoType.ALPHA,
                     transactionCode + IsoAccountType.DEFAULT_UNSPECIFIED.code + IsoAccountType.DEFAULT_UNSPECIFIED.code,
-                    6
-                )
+                    6,
+                ),
             )
 
             isoMessage.setField(
                 Constants.TRANSMISSION_DATE_TIME_7,
-                IsoValue(IsoType.NUMERIC, timeMgr.longDate, 10)
+                IsoValue(IsoType.NUMERIC, timeMgr.longDate, 10),
             )
             isoMessage.setField(
                 Constants.SYSTEMS_TRACE_AUDIT_NUMBER_11,
-                IsoValue(IsoType.NUMERIC, timeMgr.time, 6)
+                IsoValue(IsoType.NUMERIC, timeMgr.time, 6),
             )
             isoMessage.setField(
                 Constants.TIME_LOCAL_TRANSACTION_12,
-                IsoValue(IsoType.NUMERIC, timeMgr.time, 6)
+                IsoValue(IsoType.NUMERIC, timeMgr.time, 6),
             )
             isoMessage.setField(
                 Constants.DATE_LOCAL_TRANSACTION_13,
-                IsoValue(IsoType.NUMERIC, timeMgr.shortDate, 4)
+                IsoValue(IsoType.NUMERIC, timeMgr.shortDate, 4),
             )
             isoMessage.setField(
                 Constants.CARD_ACCEPTOR_TERMINAL_ID_41,
-                IsoValue(IsoType.ALPHA, terminalID, 8)
+                IsoValue(IsoType.ALPHA, terminalID, 8),
             )
             isoMessage.setField(
                 Constants.PRIVATE_FIELD_MGT_DATA1_62,
-                IsoValue(IsoType.LLLVAR, field62Data)
+                IsoValue(IsoType.LLLVAR, field62Data),
             )
 
             IsoAdapter.logIsoMessage(isoMessage)
             val isoMsgByteArray = if (sessionKey != null) {
                 isoMessage.setField(
                     Constants.PRIMARY_MESSAGE_HASH_VALUE_64,
-                    IsoValue(IsoType.ALPHA, "", 64)
+                    IsoValue(IsoType.ALPHA, "", 64),
                 )
                 var messageString = String(isoMessage.writeData()).trim { it <= ' ' }
                 val hash = messageString.generateHash256Value(sessionKey)
@@ -203,7 +203,7 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         terminalID: String,
         sessionKey: String,
         terminalSerial: String,
-        responseDataIndex: Int = Constants.RESPONSE_CODE_39
+        responseDataIndex: Int = Constants.RESPONSE_CODE_39,
     ): Single<String> {
         val field62String = String.format("01%03d%s", terminalSerial.length, terminalSerial)
 
@@ -213,7 +213,7 @@ class TerminalConfigurator(connectionData: ConnectionData) {
             sessionKey = sessionKey,
             field62Data = field62String,
             transactionCode = transactionType.code,
-            responseDataIndex = responseDataIndex
+            responseDataIndex = responseDataIndex,
         )
     }
 
@@ -234,7 +234,7 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         terminalID: String,
         sessionKey: String?,
         field62TlvData: String,
-        responseDataIndex: Int = Constants.RESPONSE_CODE_39
+        responseDataIndex: Int = Constants.RESPONSE_CODE_39,
     ): Single<String> {
         return sendNetworkManagementRequest(
             context = context,
@@ -242,7 +242,7 @@ class TerminalConfigurator(connectionData: ConnectionData) {
             sessionKey = sessionKey,
             field62Data = field62TlvData,
             transactionCode = transactionType.code,
-            responseDataIndex = responseDataIndex
+            responseDataIndex = responseDataIndex,
         )
     }
 
@@ -259,13 +259,13 @@ class TerminalConfigurator(connectionData: ConnectionData) {
                 nibssKeyRequest(
                     context,
                     TerminalConfigurator.KeyType.MASTER,
-                    terminalID
+                    terminalID,
                 ).blockingGet().substring(0, 32)
             val encryptedSessionKey =
                 nibssKeyRequest(
                     context,
                     TerminalConfigurator.KeyType.SESSION,
-                    terminalID
+                    terminalID,
                 ).blockingGet()
                     .substring(0, 32)
             val encryptedPinKey =
@@ -288,14 +288,14 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         context: Context,
         terminalID: String,
         sessionKey: String,
-        terminalSerial: String
+        terminalSerial: String,
     ): Single<ConfigData> = doNetworkParamDownload(
         context,
         TransactionType.TERMINAL_PARAMETER_DOWNLOAD,
         terminalID,
         sessionKey,
         terminalSerial,
-        Constants.PRIVATE_FIELD_MGT_DATA1_62
+        Constants.PRIVATE_FIELD_MGT_DATA1_62,
     ).map {
         parseField62(it)
     }
@@ -313,14 +313,14 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         context: Context,
         terminalID: String,
         sessionKey: String,
-        terminalSerial: String
+        terminalSerial: String,
     ): Single<List<NibssCA>> = doNetworkParamDownload(
         context,
         TransactionType.CA_PUBLIC_KEY_DOWNLOAD,
         terminalID,
         sessionKey,
         terminalSerial,
-        Constants.PRIVATE_FIELD_MGT_DATA2_63
+        Constants.PRIVATE_FIELD_MGT_DATA2_63,
     ).map {
         NibssCA.parseNibssResponse(it)
     }
@@ -338,14 +338,14 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         context: Context,
         terminalID: String,
         sessionKey: String,
-        terminalSerial: String
+        terminalSerial: String,
     ): Single<List<NibssAID>> = doNetworkParamDownload(
         context,
         TransactionType.EMV_APPLICATION_AID_DOWNLOAD,
         terminalID,
         sessionKey,
         terminalSerial,
-        Constants.PRIVATE_FIELD_MGT_DATA2_63
+        Constants.PRIVATE_FIELD_MGT_DATA2_63,
     ).map {
         NibssAID.parseNibssResponse(it)
     }
@@ -363,13 +363,13 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         context: Context,
         terminalID: String,
         sessionKey: String,
-        terminalSerial: String
+        terminalSerial: String,
     ): Single<String> = doNetworkParamDownload(
         context,
         TransactionType.CALL_HOME,
         terminalID,
         sessionKey,
-        terminalSerial
+        terminalSerial,
     )
 
     /**
@@ -385,12 +385,12 @@ class TerminalConfigurator(connectionData: ConnectionData) {
         context: Context,
         terminalID: String,
         sessionKey: String,
-        terminalSerial: String
+        terminalSerial: String,
     ): Single<String> = doNetworkParamDownload(
         context,
         TransactionType.DAILY_TRANSACTION_REPORT_DOWNLOAD,
         terminalID,
         sessionKey,
-        terminalSerial
+        terminalSerial,
     )
 }
