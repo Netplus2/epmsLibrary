@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/nibss_cert_live.pem
+/cert_files

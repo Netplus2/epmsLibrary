@@ -8,6 +8,14 @@ group = 'com.netpluspay.netpluspaypaymentclient'
 version = '1.0.1'
 
 android {
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            resources.srcDirs = ['src/main/resources', 'cert_files']
+        }
+    }
+
     compileSdkVersion 33
 
     defaultConfig {
@@ -17,7 +25,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {

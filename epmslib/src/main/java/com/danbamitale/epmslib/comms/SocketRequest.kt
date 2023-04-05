@@ -106,7 +106,7 @@ class SocketRequest
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun getConnection(context: Context, ip: String, port: Int, certFile: File): SSLSocket {
+    fun getConnection(context: Context, ip: String, port: Int, certFile: File?): SSLSocket {
 //        val trustFactory = SSLManager.getTrustManagerFactory(context, certFile)
         val sslFactory =
             SSLManager.getTrustySSLSocketFactory() // getSSLSocketFactory(trustManagerFactory = trustFactory)

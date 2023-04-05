@@ -8,8 +8,13 @@ import com.danbamitale.epmslib.utils.Utility.POS_VAS_NIBSS_DEFAULT_IP
 import com.danbamitale.epmslib.utils.Utility.POS_VAS_NIBSS_DEFAULT_PORT
 import kotlinx.android.parcel.Parcelize
 import java.io.File
+import java.io.FileNotFoundException
 
-val certificateFile: File = File(Utility.NIBSS_CERT_PATH)
+val certificateFile: File? = try {
+    File(Utility.NIBSS_CERT_PATH)
+} catch (e: FileNotFoundException) {
+    null
+}
 
 @Parcelize
 @Entity
@@ -24,7 +29,7 @@ data class ConnectionData
     var ipAddress: String = POS_VAS_NIBSS_DEFAULT_IP,
     var ipPort: Int = POS_VAS_NIBSS_DEFAULT_PORT,
     var isSSL: Boolean = true,
-    var certFile: File = certificateFile,
+    var certFile: File? = certificateFile,
 ) : Parcelable {
     @PrimaryKey
     var id = 1
