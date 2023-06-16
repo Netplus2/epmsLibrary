@@ -15,7 +15,6 @@ public class TripleDES {
 	/**
 	 * get correct length key for triple DES operation
 	 * @param key
-	 * @return
 	 */
 	private static byte[] GetKey(byte[] key)
 	{
@@ -216,7 +215,6 @@ public class TripleDES {
      * decrypt data in ECB mode
      * @param data
      * @param key
-     * @return
      */
     public static String decrypt(String data, String key)
     {

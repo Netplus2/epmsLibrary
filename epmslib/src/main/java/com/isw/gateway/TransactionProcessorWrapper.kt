@@ -28,11 +28,12 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
     private val otherAmount: Long = 0,
     var transactionRequestData: TransactionRequestData? = null,
     var keyHolder: KeyHolder? = null,
-    var configData: ConfigData? = null
+    var configData: ConfigData? = null,
 ) {
     init {
         System.loadLibrary("api-keys")
     }
+
     private val posVasIp: String = getIp()
     private val posVasPort = getPort().toInt()
     private lateinit var transactionRoute: TransactionRoute
@@ -43,7 +44,7 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
     private external fun getPort(): String
 
     fun processIswTransaction(
-        cardData: CardData
+        cardData: CardData,
     ): Single<TransactionResponse> =
         Single.fromCallable {
             attempt++
@@ -138,12 +139,13 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
                 pinBlock = if (getCVMMethod(tlvList.getTLV("9F34").value) == CVMETHOD.ONLINE_PIN) {
                     DukptHelper.DesEncryptDukpt(
                         DukptHelper.getSessionKey(),
-                        TripleDES.decrypt(
+                        // What was there before is TripleDES.decrypt
+                        DataEncryptAndDecrypt.decrypt(
                             cardData.pinBlock!!,
-                            transactionRequestData!!.iswParameters!!.pinKey ?: ""
+                            transactionRequestData!!.iswParameters!!.pinKey ?: "",
                         ).toUpperCase(
-                            Locale.getDefault()
-                        )
+                            Locale.getDefault(),
+                        ),
                     )
                 } else {
                     ""
@@ -158,7 +160,7 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
 
             iswTransactionClient.performTransaction(
                 "Bearer ${transactionRequestData!!.iswParameters!!.token}",
-                transferRequest
+                transferRequest,
             ).flatMap {
                 Single.just(
                     it.toTransactionResponse(
@@ -168,8 +170,8 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
                         transactionRequestData!!.iswParameters!!,
                         amount,
                         interswitchThreshold = transactionRequestData!!.iswParameters!!.interSwitchThreshold,
-                        reqRRN = transactionRequestData!!.RRN ?: timeMgr.fullDate.substring(2, 14)
-                    )
+                        reqRRN = transactionRequestData!!.RRN ?: timeMgr.fullDate.substring(2, 14),
+                    ),
                 )
             }.onErrorResumeNext {
                 println("interswitch error: " + it.localizedMessage)
@@ -189,9 +191,9 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
                             errorMessage = httpException.localizedMessage,
                             reqRRN = transactionRequestData!!.RRN ?: timeMgr.fullDate.substring(
                                 2,
-                                14
-                            )
-                        )
+                                14,
+                            ),
+                        ),
                     )
                 }
                 Single.error(it)
@@ -216,7 +218,7 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
     @JvmOverloads
     fun rollback(
         context: Context,
-        reversalReasonCode: MessageReasonCode = MessageReasonCode.Timeout
+        reversalReasonCode: MessageReasonCode = MessageReasonCode.Timeout,
     ): Single<TransactionResponse> {
         return if (transactionRoute == TransactionRoute.NIBSS) {
             transactionProcessor.rollback(context, reversalReasonCode)
@@ -226,14 +228,18 @@ class TransactionProcessorWrapper @JvmOverloads constructor(
     }
 
     private fun getConnectionData(posMode: PosMode): ConnectionData {
-        return if (posMode === PosMode.POSVAS) ConnectionData(
-            posVasIp,
-            posVasPort,
-            true
-        ) else ConnectionData(
-            POS_VAS_NIBSS_DEFAULT_IP,
-            POS_VAS_NIBSS_DEFAULT_PORT,
-            true
-        )
+        return if (posMode === PosMode.POSVAS) {
+            ConnectionData(
+                posVasIp,
+                posVasPort,
+                true,
+            )
+        } else {
+            ConnectionData(
+                POS_VAS_NIBSS_DEFAULT_IP,
+                POS_VAS_NIBSS_DEFAULT_PORT,
+                true,
+            )
+        }
     }
 }

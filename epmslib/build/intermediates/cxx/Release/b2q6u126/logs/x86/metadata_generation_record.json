@@ -11,11 +11,11 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -641460490
+    "memoizedHashCode": -1542104538
   },
   {
     "level_": 0,
-    "message_": "JSON \u0027/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/.cxx/Release/b2q6u126/x86/android_gradle_build.json\u0027 was up-to-date",
+    "message_": "rebuilding JSON /Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/.cxx/Release/b2q6u126/x86/android_gradle_build.json due to:",
     "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
     "tag_": "release|x86",
     "diagnosticCode_": 0,
@@ -25,7 +25,161 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -1254700825
+    "memoizedHashCode": -1179086432
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json /Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/.cxx/Release/b2q6u126/x86/android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1173878508
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file /Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/.cxx/Release/b2q6u126/x86/metadata_generation_command.txt, will remove stale json folder",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1888156942
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 919025090
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/.cxx/Release/b2q6u126/x86\u0027",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1383892563
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/.cxx/Release/b2q6u126/x86\u0027",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1173679545
+  },
+  {
+    "level_": 0,
+    "message_": "executing ndkBuild /Users/adebayooloyede/Library/Android/sdk/ndk/21.3.6528147/ndk-build \\\n  NDK_PROJECT_PATH\u003dnull \\\n  APP_BUILD_SCRIPT\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk \\\n  NDK_APPLICATION_MK\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Application.mk \\\n  APP_ABI\u003dx86 \\\n  NDK_ALL_ABIS\u003dx86 \\\n  NDK_DEBUG\u003d0 \\\n  APP_PLATFORM\u003dandroid-21 \\\n  NDK_OUT\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/intermediates/cxx/Release/b2q6u126/obj \\\n  NDK_LIBS_OUT\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/intermediates/cxx/Release/b2q6u126/lib \\\n  APP_SHORT_COMMANDS\u003dfalse \\\n  LOCAL_SHORT_COMMANDS\u003dfalse \\\n  -B \\\n  -n\n",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1207936201
+  },
+  {
+    "level_": 0,
+    "message_": "/Users/adebayooloyede/Library/Android/sdk/ndk/21.3.6528147/ndk-build \\\n  NDK_PROJECT_PATH\u003dnull \\\n  APP_BUILD_SCRIPT\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk \\\n  NDK_APPLICATION_MK\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Application.mk \\\n  APP_ABI\u003dx86 \\\n  NDK_ALL_ABIS\u003dx86 \\\n  NDK_DEBUG\u003d0 \\\n  APP_PLATFORM\u003dandroid-21 \\\n  NDK_OUT\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/intermediates/cxx/Release/b2q6u126/obj \\\n  NDK_LIBS_OUT\u003d/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/intermediates/cxx/Release/b2q6u126/lib \\\n  APP_SHORT_COMMANDS\u003dfalse \\\n  LOCAL_SHORT_COMMANDS\u003dfalse \\\n  -B \\\n  -n\n",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -888415996
+  },
+  {
+    "level_": 0,
+    "message_": "parse and convert ndk-build output to build configuration JSON",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -638458223
+  },
+  {
+    "level_": 0,
+    "message_": "found application make file /Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Application.mk",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1752617301
+  },
+  {
+    "level_": 0,
+    "message_": "done executing ndkBuild",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1226388343
+  },
+  {
+    "level_": 0,
+    "message_": "write command file /Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/build/.cxx/Release/b2q6u126/x86/metadata_generation_command.txt",
+    "file_": "/Users/adebayooloyede/Desktop/SAdebayoAndroid/EpmsLibrary/epmslib/src/main/jni/Android.mk",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -162846956
   },
   {
     "level_": 0,
@@ -39,6 +193,6 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -849571325
+    "memoizedHashCode": -1750215373
   }
 ]

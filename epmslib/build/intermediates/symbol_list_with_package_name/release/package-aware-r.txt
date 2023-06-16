@@ -1,5 +1,3 @@
 com.danbamitale.epmslib
 raw config
-raw nibss_cert_live
-raw nibss_cert_test
 string app_name

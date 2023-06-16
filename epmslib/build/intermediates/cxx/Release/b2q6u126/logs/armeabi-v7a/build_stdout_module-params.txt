@@ -1,1 +1,2 @@
-make: Nothing to be done for 'module-params'.
+[armeabi-v7a] Compile thumb  : module-params <= module-params.c
+[armeabi-v7a] SharedLibrary  : libmodule-params.so

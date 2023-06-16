@@ -1,15 +1,16 @@
 package com.danbamitale.epmslib.comms
 
 import android.content.Context
-import com.danbamitale.epmslib.entities.certificateFile
+import timber.log.Timber
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.InputStream
 import java.security.KeyStore
 import java.security.SecureRandom
+import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
-import javax.net.ssl.* // ktlint-disable no-wildcard-imports
+import javax.net.ssl.*
 
 object SSLManager {
 
@@ -44,10 +45,14 @@ object SSLManager {
 
     fun getTrustySSLSocketFactory(): SSLSocketFactory {
         val trustManager = object : X509TrustManager {
+
+            @Throws(CertificateException::class)
             override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
+                checkCertTrusted(chain, authType, false, this)
             }
 
             override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {
+                checkCertTrusted(chain, authType, false, this)
             }
 
             override fun getAcceptedIssuers(): Array<X509Certificate> {
@@ -74,4 +79,26 @@ object SSLManager {
 
     fun createSocket(sslSocketFactory: SSLSocketFactory, ipAddress: String, port: Int) =
         sslSocketFactory.createSocket(ipAddress, port)
+
+    @Throws(CertificateException::class)
+    fun checkCertTrusted(
+        chain: Array<out X509Certificate>?,
+        authType: String?,
+        isServer: Boolean,
+        trustManager: X509TrustManager
+    ) {
+        try {
+            if (isServer) {
+                trustManager.checkServerTrusted(
+                    chain,
+                    authType,
+                )
+            } else {
+                trustManager.checkClientTrusted(chain, authType)
+            }
+        } catch (ae: CertificateException) {
+            // if the cert is stored in our appTrustManager, we ignore expiredness
+            Timber.tag("CERTIFICATE_EXCEPTION").d(ae.localizedMessage)
+        }
+    }
 }
